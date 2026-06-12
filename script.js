@@ -40,7 +40,6 @@ function setCity(row) {
   row.classList.add("active");
   document.getElementById("cityName").textContent = row.dataset.city;
   document.getElementById("cityDate").textContent = row.dataset.date;
-  document.getElementById("cityTheme").textContent = row.dataset.theme;
 
   const video = document.getElementById("cityVideo");
   const source = document.getElementById("cityVideoSource");
@@ -243,20 +242,41 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+const mobileUI = window.matchMedia("(max-width: 820px)");
+
 document.querySelectorAll(".video-card[data-youtube]").forEach((card) => {
-  card.addEventListener("mouseenter", () => setFeaturedVideoCard(card));
-  card.addEventListener("focus", () => setFeaturedVideoCard(card));
-  card.addEventListener("click", () => window.open(card.dataset.youtube, "_blank"));
-  card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      window.open(card.dataset.youtube, "_blank");
+  card.addEventListener("mouseenter", () => {
+    if (!mobileUI.matches) setFeaturedVideoCard(card);
+  });
+  card.addEventListener("focus", () => {
+    if (!mobileUI.matches) setFeaturedVideoCard(card);
+  });
+  card.addEventListener("click", (event) => {
+    if (mobileUI.matches) {
+      if (event.target.closest(".play")) {
+        event.stopPropagation();
+        window.open(card.dataset.youtube, "_blank");
+        return;
+      }
+      setFeaturedVideoCard(card);
+      return;
     }
+    window.open(card.dataset.youtube, "_blank");
+  });
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    if (mobileUI.matches) {
+      setFeaturedVideoCard(card);
+      return;
+    }
+    window.open(card.dataset.youtube, "_blank");
   });
 });
 
 document.querySelector(".video-grid")?.addEventListener("mouseleave", () => {
-  if (defaultFeaturedVideoCard) setFeaturedVideoCard(defaultFeaturedVideoCard);
+  if (mobileUI.matches || !defaultFeaturedVideoCard) return;
+  setFeaturedVideoCard(defaultFeaturedVideoCard);
 });
 
 document.querySelectorAll("[data-accordion] .spark-item button").forEach((button) => {

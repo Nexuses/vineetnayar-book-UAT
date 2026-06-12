@@ -681,7 +681,7 @@
     justify-content: center;
     width: min(72vw, 300px);
     height: min(72vw, 300px);
-    margin: 0 auto clamp(16px, 3.5vh, 28px);
+    margin: 0 auto clamp(28px, 6vh, 44px);
     flex-shrink: 0;
   }
 
@@ -720,7 +720,7 @@
     max-width: none;
     height: auto;
     max-height: none;
-    padding: clamp(16px, 3.5vh, 28px) 0 0;
+    padding: clamp(24px, 5vh, 40px) 0 0;
     overflow: visible;
     pointer-events: auto;
   }

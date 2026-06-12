@@ -175,8 +175,115 @@
   }
 
   .hero {
+    min-height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: visible;
     padding-top: calc(var(--header) + 52px);
     padding-bottom: clamp(28px, 5vh, 40px);
+  }
+
+  .hero-content {
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero h1 span {
+    overflow: visible;
+  }
+
+  .hero h1 b {
+    transform: none;
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero-mark {
+    width: min(88vw, 340px);
+    max-height: 32vh;
+    object-fit: contain;
+    margin-top: 4px;
+  }
+
+  .hero-actions,
+  .hero-quote,
+  .hero-signature {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .city-row {
+    -webkit-appearance: none;
+    appearance: none;
+    color: #111;
+  }
+
+  .city-row .name {
+    color: #111;
+    -webkit-text-fill-color: #111;
+  }
+
+  .city-row .date {
+    color: rgba(36, 36, 36, 0.6);
+    -webkit-text-fill-color: rgba(36, 36, 36, 0.6);
+  }
+
+  .city-row:hover .name,
+  .city-row:focus-visible .name,
+  .city-row.active .name {
+    color: #111;
+    -webkit-text-fill-color: #111;
+  }
+
+  .city-caption,
+  .city-caption strong,
+  .city-caption #cityName,
+  .city-caption #cityDate,
+  .city-caption-meta {
+    color: #111;
+    -webkit-text-fill-color: #111;
+    text-align: center;
+  }
+
+  .city-caption #cityDate,
+  .city-caption-meta #cityDate {
+    color: rgba(36, 36, 36, 0.6);
+    -webkit-text-fill-color: rgba(36, 36, 36, 0.6);
+  }
+
+  .video-card .play {
+    z-index: 3;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .video-card.featured {
+    min-height: clamp(300px, 78vw, 440px);
+  }
+
+  .video-card.featured .video-overlay p {
+    display: block;
+  }
+
+  .video-card:not(.featured) .video-overlay p {
+    display: none;
+  }
+
+  .video-section {
+    padding-inline: var(--gutter);
+  }
+
+  .video-section > .wrap {
+    width: 100%;
+    max-width: none;
   }
 
   .video-grid,
@@ -270,6 +377,42 @@
   .hf-book-anim .hf-heading-highlight {
     font-size: var(--mobile-h2);
     line-height: 0.92;
+  }
+
+  /* Manifesto — heading + body pair as one unit */
+  .manifesto-line {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 22px 0;
+    text-align: left;
+  }
+
+  .manifesto-line h4 {
+    margin: 0;
+    font-size: clamp(14.4px, 4.48vw, 21.6px);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .manifesto-line em {
+    margin: 0;
+    font-size: var(--body-size);
+    font-weight: 400;
+    font-style: normal;
+    line-height: var(--body-line);
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .manifesto-line.active h4 {
+    color: var(--yellow);
+  }
+
+  .manifesto-line.active em {
+    color: rgba(255, 255, 255, 0.88);
   }
 }
 

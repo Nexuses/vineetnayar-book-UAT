@@ -16,6 +16,20 @@ function showReveals(elements) {
   });
 }
 
+function ensureHeroVisible() {
+  document.querySelectorAll(".hero .reveal").forEach((element) => {
+    element.classList.add("on");
+    element.style.opacity = "";
+    element.style.transform = "";
+  });
+
+  document.querySelectorAll(".hero h1 b").forEach((element) => {
+    element.style.transform = "";
+    element.style.opacity = "";
+    element.style.visibility = "";
+  });
+}
+
 function revealInViewport() {
   document.querySelectorAll(".reveal:not(.on)").forEach((element) => {
     const rect = element.getBoundingClientRect();
@@ -55,10 +69,14 @@ function initRevealGroups() {
   });
 }
 
+ensureHeroVisible();
 initRevealGroups();
 revealInViewport();
 
 window.addEventListener("scroll", revealInViewport, { passive: true });
 window.addEventListener("resize", revealInViewport);
 window.addEventListener("hf-book-complete", revealInViewport);
-window.addEventListener("load", revealInViewport);
+window.addEventListener("load", () => {
+  ensureHeroVisible();
+  revealInViewport();
+});

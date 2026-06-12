@@ -19,8 +19,8 @@
   --manifesto-heading-max: 520px;
   --body-size: clamp(16px, 1.125vw, 18px);
   --body-line: 1.48;
-  --eyebrow-size: clamp(11px, 0.78vw, 13px);
-  --eyebrow-gap: clamp(18px, 2.2vw, 28px);
+  --eyebrow-size: 16px;
+  --eyebrow-gap: clamp(18px, 2.2vw, 20px);
 }
 
 * {
@@ -351,13 +351,17 @@ main {
 }
 
 .eyebrow {
-  margin: 0 0 var(--eyebrow-gap);
+  margin: 0;
   color: var(--muted);
   font-size: var(--eyebrow-size);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.eyebrow + :is(h1, h2, h3, h4, .display) {
+  margin-top: var(--eyebrow-gap);
 }
 
 .lede {
@@ -753,9 +757,12 @@ main > .promise {
   border: 0;
   border-top: 1px solid #000;
   background: transparent;
+  color: #111;
   padding: 24px 0;
   text-align: left;
   transition: background 220ms ease, padding 220ms ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .city-row:last-child {
@@ -770,6 +777,7 @@ main > .promise {
 }
 
 .city-row .name {
+  color: #111;
   font-size: clamp(25.6px, 3.2vw, 44.8px);
   font-weight: 900;
   line-height: 0.95;
@@ -822,12 +830,40 @@ main > .promise {
 }
 
 .city-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   margin-top: 22px;
   padding: 18px;
   border-radius: 18px;
   background: var(--soft);
   color: #111;
   line-height: 1.4;
+  text-align: center;
+}
+
+.city-caption-meta {
+  margin: 0;
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: var(--body-line);
+}
+
+.city-caption-meta strong {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.city-caption-meta #cityDate {
+  color: rgba(36, 36, 36, 0.6);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.city-register {
+  margin: 0;
+  min-width: min(100%, 220px);
 }
 
 .video-section {
@@ -958,9 +994,14 @@ main > .promise {
 
 .wall-head h2 {
   max-width: 1020px;
-  margin: 22px auto 0;
+  margin-left: auto;
+  margin-right: auto;
   font-weight: 900;
   line-height: 0.98;
+}
+
+.wall-head .eyebrow + h2 {
+  margin-top: var(--eyebrow-gap);
 }
 
 .wall-head h2 .hand-highlight {
@@ -1470,7 +1511,7 @@ main > .promise {
   }
 
   .hero {
-    min-height: 94svh;
+    min-height: auto;
     padding-top: calc(var(--header) + 52px);
     padding-bottom: clamp(28px, 5vh, 40px);
   }
@@ -1597,6 +1638,10 @@ main > .promise {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .hero h1 b {
+    transform: none;
   }
 }
 
@@ -1752,10 +1797,16 @@ main > .promise {
 }
 
 .manifesto-wrap {
-  display: grid;
-  gap: clamp(34px, 5vw, 64px);
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: 0;
+}
+
+.manifesto-wrap .manifesto-lines {
+  width: 100%;
+  margin-top: clamp(34px, 5vw, 64px);
 }
 
 .manifesto h2 {
