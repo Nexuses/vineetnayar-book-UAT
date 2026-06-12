@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Humans First Series - Stay Curious. Stay Inspired.</title>
+  <meta name="description" content="A movement-led experience website for The Humans First Series with Vineet Nayar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260611-footer" />
+  <link rel="stylesheet" href="humans-first-1.css?v=20260611-book-copy" />
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary navigation" data-nav>
+      <span class="nav-orb" aria-hidden="true"></span>
+      <div class="nav-group nav-left">
+        <a href="#truth" data-section-link="truth">Truth</a>
+        <a href="#sparks" data-section-link="sparks">Sparks</a>
+        <a href="#experience" data-section-link="experience">Experience</a>
+      </div>
+
+      <a href="#top" class="brand" aria-label="The Humans First Series home">
+        <img class="brand-logo" src="assets/figma/logo-no-underline.png" alt="Humans First Series" />
+      </a>
+
+      <div class="nav-group nav-right">
+        <a href="#cities" data-section-link="cities">Cities</a>
+        <a href="#faq" data-section-link="faq">FAQ</a>
+        <button class="nav-cta magnetic" type="button" data-open-modal>Join the movement</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" data-hero>
+      <div class="hero-content">
+        <h1 class="display">
+          <span><b>Why we choose</b></span>
+          <span><b><img class="hero-mark" src="assets/figma/hero-mark.png" alt="Humans First" /></b></span>
+        </h1>
+
+        <p class="hero-quote reveal on">“As machines become smarter, will human beings continue to believe in themselves?”</p>
+
+        <img class="hero-signature" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/168b845d-7080-4a93-8f59-592f2b1e17f7.png" alt="Vineet Nayar signature" />
+
+        <div class="hero-actions">
+          <button class="btn magnetic" type="button" data-open-modal>Join the movement</button>
+          <a class="btn secondary magnetic" href="#wall">Write on the wall</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hf-book-anim" data-hf-book aria-label="Humans First book experience">
+      <div class="hf-track" id="hf-track">
+        <div class="hf-stage">
+          <div class="hf-hairline" id="hf-hairline" aria-hidden="true"></div>
+          <div class="hf-circle" id="hf-circle" aria-hidden="true"></div>
+
+          <div class="hf-book-scene" id="hf-bookScene">
+            <div class="hf-book" id="hf-book">
+              <div class="hf-back-board" aria-hidden="true"></div>
+              <div class="hf-page-stack" aria-hidden="true">
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+                <span class="hf-page-layer"></span>
+              </div>
+              <div class="hf-spine" aria-hidden="true"></div>
+              <div class="hf-fore-edge" aria-hidden="true"></div>
+
+              <div class="hf-sheet hf-page-base">
+                <div class="hf-page-content" id="hf-pageBase"></div>
+              </div>
+              <div class="hf-sheet hf-turn" id="hf-turn">
+                <div class="hf-page-content" id="hf-pageTurn"></div>
+              </div>
+
+              <div class="hf-sheet hf-cover" id="hf-cover">
+                <img src="https://ik.imagekit.io/zkan0at6z/op%201.png" alt="Humans First, Machines Second book cover" />
+              </div>
+
+              <div class="hf-gloss" aria-hidden="true"></div>
+              <button class="hf-cta" id="hf-cta" type="button"><span class="dot"></span>What it is</button>
+            </div>
+          </div>
+
+          <div class="hf-blocks" id="hf-blocks">
+            <div class="hf-block hf-block-tr">
+              <div class="hf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <h3>NOT A LAUNCH.</h3>
+              <p>A six-city conversation about confidence, possibility and the parts of us no machine should inherit.</p>
+            </div>
+            <div class="hf-block hf-block-bl">
+              <div class="hf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8A5 5 0 0 1 12 6a5 5 0 0 1 9.5 7c-2.5 3.65-9.5 8-9.5 8z"/></svg></div>
+              <h3>NOT ANTI-AI.</h3>
+              <p>Pro-human. Pro-courage. Pro-imagination. Pro-the-person-who-has-forgotten-they-still-matter.</p>
+            </div>
+            <div class="hf-block hf-block-tl">
+              <div class="hf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h10l4 4v12M8 7h6M8 11h8M8 15h5"/></svg></div>
+              <h3>NOT A LECTURE.</h3>
+              <p>Thirty sparks, not thirty rules — meant to be argued with, not memorised.</p>
+            </div>
+            <div class="hf-block hf-block-br">
+              <div class="hf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v6M12 16v6M4 12h6M16 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></div>
+              <h3>NOT THE END.</h3>
+              <p>The beginning of a question worth keeping: what stays human when the machines get good?</p>
+            </div>
+          </div>
+
+          <div class="hf-copy">
+            <div class="hf-panel" data-index="1">
+              <div class="num">01 — THE PREMISE</div>
+              <h3><span class="hf-heading-highlight">Humans first.</span></h3>
+              <p>Before the tools, before the speed, before the scale — the person. Everything starts there. This book is not a manual for working faster. It is a reminder that judgment, conscience, and care still belong to us.</p>
+              <p>Tap “What it is” to see how the movement begins. Then scroll slowly — the cover opens, the argument unfolds, and each page asks a different question about what we refuse to surrender.</p>
+              <span class="tag">Spark One</span>
+            </div>
+            <div class="hf-panel" data-index="2">
+              <div class="num">02 — THE TURN</div>
+              <h3><span class="hf-heading-highlight">Machines second.</span></h3>
+              <p>Not last, not feared — second. Powerful in service of judgment, never in place of it. Machines can calculate and recommend. They cannot carry the weight of a conscience or the context of a life lived in full.</p>
+              <p>Turn the page and watch what changes: speed without soul is still just noise. The book makes room for a different kind of winning — one that keeps the human filament at the center.</p>
+              <span class="tag">Spark Two</span>
+            </div>
+            <div class="hf-panel" data-index="3">
+              <div class="num">03 — THE SPARKS</div>
+              <h3><span class="hf-heading-highlight">Reimagine winning.</span></h3>
+              <p>Thirty sparks to rethink what success looks like in an age that automates the easy parts. Each one is small enough to hold in your hand and sharp enough to cut through the fog of inevitability.</p>
+              <p>Read one slowly. Push back if you disagree. This is not a book you finish in a hurry — it is a book you use to start better conversations in your team, your family, and your city.</p>
+              <span class="tag">Spark Three</span>
+            </div>
+            <div class="hf-panel" data-index="4">
+              <div class="num">04 — THE STAKES</div>
+              <h3><span class="hf-heading-highlight">What stays human.</span></h3>
+              <p>Courage. Imagination. The willingness to matter — the parts no model should inherit. When the machines get good at everything easy, these are the parts that still decide who we become.</p>
+              <p>Close it gently when you reach the end. The question does not expire. It waits for the next room, the next city, and the next person who needs to believe in themselves again.</p>
+              <span class="tag">Spark Four</span>
+            </div>
+          </div>
+
+          <div class="hf-hero-cap" id="hf-heroCap">
+            <h2>Humans First, Machines Second</h2>
+            <div class="sub">Vineet Nayar · 30 Sparks to Reimagine Winning</div>
+          </div>
+
+          <div class="hf-cue" id="hf-cue">Scroll to explore</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Movement section hidden for now
+    <section class="movement" data-movement>
+      <div class="centerline" aria-hidden="true"></div>
+      <div class="dotpin" aria-hidden="true"></div>
+      <div class="movement-sticky">
+        <div class="orb-stage">
+          <div class="big-orb" aria-hidden="true"></div>
+          <img class="book-mock" src="assets/figma/book.png" alt="Humans First Machines Second book mockup" />
+        </div>
+        <div class="move-copy left reveal">
+          <h4>Not anti-AI.</h4>
+          <p>Pro-human. Pro-courage. Pro-imagination. Pro-the-person-who-has-forgotten-they-still-matter.</p>
+        </div>
+        <div class="move-copy right reveal">
+          <h4>Not a launch.</h4>
+          <p>A six-city conversation about confidence, possibility and the parts of us no machine should inherit.</p>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- Truth section hidden for now
+    <section class="section truth" id="truth">
+      <div class="wrap truth-grid">
+        <div class="truth-copy">
+          <p class="eyebrow reveal">The uneasy truth</p>
+          <h2 class="display section-title reveal">People are not<br>afraid of AI.</h2>
+          <p class="section-subtitle reveal"><span class="hand-highlight">They are afraid of becoming invisible.</span></p>
+        </div>
+        <div class="truth-panels" data-panels>
+          <article class="truth-panel reveal active">
+            <span>01</span>
+            <h5>Students feel average before life begins.</h5>
+            <p>They are told to move faster, learn faster, adapt faster until the future begins to sound like a race they joined late.</p>
+          </article>
+          <article class="truth-panel reveal">
+            <span>02</span>
+            <h5>Professionals keep proving they still matter.</h5>
+            <p>Every new tool arrives with a small private question: am I becoming useful, or merely easier to replace?</p>
+          </article>
+          <article class="truth-panel reveal">
+            <span>03</span>
+            <h5>Leaders are building AI-first organizations.</h5>
+            <p>But the winning organizations will be human-first: places where judgment, trust and courage move faster than fear.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- Conversation section hidden for now -->
+    <!--
+    <section class="section conversation" id="conversation">
+      <div class="wrap center">
+        <h2 class="display section-title reveal">A book that behaves like a matchstick.</h2>
+        <p class="section-subtitle reveal"><span class="hand-highlight">Thirty sparks. One fire.</span></p>
+        <p class="lede reveal">Humans First, Machines Second is written for the moment when intelligence is everywhere and belief feels scarce. It does not ask people to outrun machines. It asks them to remember what machines do not carry: conscience, context, care, wonder, rebellion, forgiveness and the strange human ability to begin again.</p>
+
+        <div class="cards cards-captioned">
+          <article class="card reveal">
+            <div class="card-flip">
+              <img class="card-face card-front" src="assets/figma/trust.png" alt="Trust illustration" />
+              <img class="card-face card-back" src="assets/figma/Trust-flip.png" alt="Trust illustration alternate" />
+            </div>
+            <h3 class="sr-only">Trust</h3>
+          </article>
+          <article class="card reveal">
+            <div class="card-flip">
+              <img class="card-face card-front" src="assets/figma/empower.png" alt="Empower illustration" />
+              <img class="card-face card-back" src="assets/figma/Empower-flip.png" alt="Empower illustration alternate" />
+            </div>
+            <h3 class="sr-only">Empower</h3>
+          </article>
+          <article class="card amplify reveal">
+            <div class="card-flip">
+              <img class="card-face card-front" src="assets/figma/amplify.png" alt="Amplify illustration" />
+              <img class="card-face card-back" src="assets/figma/Amplify-flip.png" alt="Amplify illustration alternate" />
+            </div>
+            <h3 class="sr-only">Amplify</h3>
+          </article>
+          <article class="card reveal">
+            <div class="card-flip">
+              <img class="card-face card-front" src="assets/figma/reimagine.png" alt="Reimagine illustration" />
+              <img class="card-face card-back" src="assets/figma/Reimagine-flip.png" alt="Reimagine illustration alternate" />
+            </div>
+            <h3 class="sr-only">Reimagine</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <section class="section manifesto" id="manifesto">
+      <div class="wrap manifesto-wrap">
+        <p class="eyebrow reveal">The manifesto</p>
+        <h2 class="display reveal manifesto-title">What India refuses to give up <span class="hand-highlight">in the age of AI.</span></h2>
+        <div class="manifesto-lines" data-manifesto>
+          <button type="button" class="manifesto-line reveal active"><h4>We will use machines.</h4><em>But we will not become mechanical.</em></button>
+          <button type="button" class="manifesto-line reveal"><h4>We will move faster.</h4><em>But not past each other.</em></button>
+          <button type="button" class="manifesto-line reveal"><h4>We will automate the boring.</h4><em>And protect the brilliant.</em></button>
+          <button type="button" class="manifesto-line reveal"><h4>We will trust data.</h4><em>But listen for what data cannot say.</em></button>
+          <button type="button" class="manifesto-line reveal"><h4>We will ask better questions.</h4><em>Especially when answers arrive too easily.</em></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sparks section hidden for now -->
+    <!--
+    <section class="section sparks" id="sparks">
+      <div class="wrap center">
+        <p class="eyebrow reveal">Inside the book</p>
+        <h2 class="display section-title reveal">Five sparks from thirty.</h2>
+        <p class="lede reveal">Tap a spark. Let it open. Each is a small argument for human agency.</p>
+      </div>
+      <div class="wrap spark-list" data-accordion>
+        <article class="spark-item open reveal">
+          <button type="button"><h4>Your People Are Your Algorithm</h4><b>01</b></button>
+          <div class="spark-body"><p>Tools do not create judgment. Dashboards do not create courage. The human filament is still the source of light.</p></div>
+        </article>
+        <article class="spark-item reveal">
+          <button type="button"><h4>Humans Are the Loop</h4><b>02</b></button>
+          <div class="spark-body"><p>People are not checkpoints in a machine process. They are the moral loop, the context loop, the consequence loop.</p></div>
+        </article>
+        <article class="spark-item reveal">
+          <button type="button"><h4>AI Is a Guide, Not a God</h4><b>03</b></button>
+          <div class="spark-body"><p>A recommendation can point. It cannot care. It cannot know what kind of life, company or country we are trying to build.</p></div>
+        </article>
+        <article class="spark-item reveal">
+          <button type="button"><h4>AI Puts Jugaad on Steroids</h4><b>04</b></button>
+          <div class="spark-body"><p>Human ingenuity under constraint is not obsolete. With AI, it becomes more available, more daring and more democratic.</p></div>
+        </article>
+        <article class="spark-item reveal">
+          <button type="button"><h4>Highlight Hallucinations Early</h4><b>05</b></button>
+          <div class="spark-body"><p>The confident wrong answer is the new workplace hazard. The antidote is alert, humble, human scrutiny.</p></div>
+        </article>
+      </div>
+    </section>
+    -->
+
+    <!-- Experience section hidden for now -->
+    <!--
+    <section class="section experience" id="experience">
+      <div class="wrap center">
+        <p class="eyebrow reveal">The live experience</p>
+        <h2 class="display section-title reveal experience-title">Designed like a memory, <span class="hand-highlight">not a meeting.</span></h2>
+        <p class="lede reveal">No panel clutter. No cold podium. No corporate theatre. Just a room, a question, a story, a wall, a promise, and the possibility that someone leaves believing in themselves again.</p>
+      </div>
+      <div class="wrap experience-rail">
+        <article class="rail-card featured reveal" data-rail-index="0"><div class="rail-content"><h5>Arrive</h5><p>Write on the Humans First Wall before the room tells you what to think.</p></div><div class="rail-image"><img class="rail-icon" src="assets/figma/enter.png" alt="Arrive" /></div></article>
+        <article class="rail-card reveal" data-rail-index="1"><div class="rail-content"><h5>Listen</h5><p>A Sampark child, teacher or parent opens with a story. No statistics. Just life.</p></div><div class="rail-image"><img class="rail-icon" src="assets/figma/listen.png" alt="Listen" /></div></article>
+        <article class="rail-card reveal" data-rail-index="2"><div class="rail-content"><h5>Reflect</h5><p>Vineet speaks for 30 minutes on winning without surrendering what makes us human.</p></div><div class="rail-image"><img class="rail-icon" src="assets/figma/reflect.png" alt="Reflect" /></div></article>
+        <article class="rail-card reveal" data-rail-index="3"><div class="rail-content"><h5>Ask</h5><p>The audience brings its questions: careers, children, leadership, fear, hope.</p></div><div class="rail-image"><img class="rail-icon" src="assets/figma/ask.png" alt="Ask" /></div></article>
+        <article class="rail-card reveal" data-rail-index="4"><div class="rail-content"><h5>Promise</h5><p>Help at least two people discover what they are capable of becoming.</p></div><div class="rail-image"><img class="rail-icon" src="assets/figma/promise.png" alt="Promise" /></div></article>
+      </div>
+    </section>
+    -->
+
+    <section class="section chapters" id="cities">
+      <div class="wrap center">
+        <h2 class="display section-title reveal">One conversation.</h2>
+        <p class="section-subtitle reveal"><span class="hand-highlight">Six living chapters.</span></p>
+        <p class="lede reveal">Hover or tap a city. The story changes, the question deepens, the movement gathers handwriting.</p>
+      </div>
+
+      <div class="wrap chapter-grid">
+        <div class="city-list reveal" data-city-list>
+          <button class="city-row active" type="button" data-city="Delhi" data-date="25 July 2026" data-theme="Will average people still matter?" data-video="https://ik.imagekit.io/zkan0at6z/8643641-uhd_3840_2160_24fps.mp4?updatedAt=1780983507081" data-image="assets/figma/placeholder-delhi.png">
+            <span class="name">Delhi</span>
+            <span class="date">25 July 2026</span>
+          </button>
+          <button class="city-row" type="button" data-city="Mumbai" data-date="1 August 2026" data-theme="The Human Advantage" data-video="https://ik.imagekit.io/zkan0at6z/7727179-hd_1920_1080_25fps.mp4?updatedAt=1780983507754" data-image="assets/figma/placeholder-mumbai.png">
+            <span class="name">Mumbai</span>
+            <span class="date">1 August 2026</span>
+          </button>
+          <button class="city-row" type="button" data-city="Bengaluru" data-date="8 August 2026" data-theme="What AI Cannot Replace" data-video="https://ik.imagekit.io/zkan0at6z/6973228-hd_1920_1080_25fps.mp4?updatedAt=1780983507511" data-image="assets/figma/placeholder-bengaluru.png">
+            <span class="name">Bengaluru</span>
+            <span class="date">8 August 2026</span>
+          </button>
+          <button class="city-row" type="button" data-city="Hyderabad" data-date="15 August 2026" data-theme="Why Human Potential Still Wins" data-video="https://ik.imagekit.io/zkan0at6z/6774848-uhd_3840_2160_30fps.mp4?updatedAt=1780983512081" data-image="assets/figma/placeholder-hyderabad.png">
+            <span class="name">Hyderabad</span>
+            <span class="date">15 August 2026</span>
+          </button>
+          <button class="city-row" type="button" data-city="Chennai" data-date="22 August 2026" data-theme="Stay Curious. Stay Inspired." data-video="https://ik.imagekit.io/zkan0at6z/15439576_2160_3840_30fps.mp4?updatedAt=1780983519372" data-image="assets/figma/placeholder-chennai.png">
+            <span class="name">Chennai</span>
+            <span class="date">22 August 2026</span>
+          </button>
+          <button class="city-row" type="button" data-city="Jaipur / Ahmedabad" data-date="29 August 2026" data-theme="What part of being human will you never give up?" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" data-image="assets/figma/placeholder-jaipur-ahmedabad.png">
+            <span class="name">Jaipur / Ahmedabad</span>
+            <span class="date">29 August 2026</span>
+          </button>
+        </div>
+
+        <aside class="city-preview reveal">
+          <div class="city-preview-inner">
+            <video class="city-video" id="cityVideo" autoplay muted loop playsinline>
+              <source id="cityVideoSource" src="https://ik.imagekit.io/zkan0at6z/8643641-uhd_3840_2160_24fps.mp4?updatedAt=1780983507081" type="video/mp4">
+            </video>
+            <img class="city-deco" alt="" aria-hidden="true" />
+          </div>
+          <div class="city-caption">
+            <strong id="cityName">Delhi</strong> &middot; <span id="cityDate">25 July 2026</span><br>
+            <span id="cityTheme">Will average people still matter?</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section video-section" id="videos">
+      <div class="wrap center">
+        <h2 class="display section-title reveal">Watch belief return to the room.</h2>
+        <p class="section-subtitle reveal"><span class="hand-highlight">Vineet in action</span></p>
+        <p class="lede reveal">The best talks do not end with applause. They end with a person walking out differently.</p>
+      </div>
+
+      <div class="wrap video-grid">
+        <article class="video-card featured reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=uToRdEeLfw8">
+          <img src="https://img.youtube.com/vi/uToRdEeLfw8/maxresdefault.jpg" alt="Why humans still matter" />
+          <span class="play" aria-hidden="true">▶</span>
+          <div class="video-overlay">
+            <b>Why humans still matter</b>
+            <p>A conversation on self-belief in the age of AI.</p>
+          </div>
+        </article>
+        <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=9x0AHyG-ke0">
+          <img src="https://img.youtube.com/vi/9x0AHyG-ke0/maxresdefault.jpg" alt="Curiosity" />
+          <span class="play" aria-hidden="true">▶</span>
+          <div class="video-overlay"><b>Curiosity</b></div>
+        </article>
+        <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=EW8lk860HPA">
+          <img src="https://img.youtube.com/vi/EW8lk860HPA/maxresdefault.jpg" alt="Leadership" />
+          <span class="play" aria-hidden="true">▶</span>
+          <div class="video-overlay"><b>Leadership</b></div>
+        </article>
+        <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=cCdu67s_C5E">
+          <img src="https://img.youtube.com/vi/cCdu67s_C5E/maxresdefault.jpg" alt="Possibility" />
+          <span class="play" aria-hidden="true">▶</span>
+          <div class="video-overlay"><b>Possibility</b></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wall-section" id="wall">
+      <div class="wall-head center">
+        <p class="eyebrow">The Humans First Wall</p>
+        <h2 class="reveal">What part of being human will you <mark class="hand-highlight">never give up?</mark></h2>
+        <p class="lede section-note reveal">Across six cities, every answer is written and signed. Together they become a growing national reflection on what India refuses to lose in the age of AI.</p>
+      </div>
+
+      <div class="wall-embed reveal">
+        <iframe
+          src="https://vineetnayar-book-dw.vercel.app/"
+          title="Humans First Wall"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- FAQ section hidden for now -->
+    <!--
+    <section class="section faq" id="faq" data-faq>
+      <div class="wrap faq-grid">
+        <div class="faq-copy">
+          <p class="eyebrow reveal">FAQ</p>
+          <h3 class="display section-title reveal faq-title">Before you join <span class="hand-highlight">the room.</span></h3>
+          <p class="lede reveal">A few clear answers, so the experience can stay simple, human and open.</p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item open reveal">
+            <button type="button" aria-expanded="true"><span>Is this a book launch?</span><b>+</b></button>
+            <div class="faq-answer"><p>No. The book begins the conversation, but the room belongs to the people in it. Expect a live talk, questions, the Humans First Wall, the Promise and a signing experience.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button type="button" aria-expanded="false"><span>Who should attend?</span><b>+</b></button>
+            <div class="faq-answer"><p>Students, professionals, educators, entrepreneurs, parents and leaders, especially anyone who has quietly wondered, "Will I still matter in the age of AI?"</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button type="button" aria-expanded="false"><span>Is registration free?</span><b>+</b></button>
+            <div class="faq-answer"><p>Yes. Seats are free, public and limited. Once a city fills, new registrations move to a waiting list.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button type="button" aria-expanded="false"><span>What is the Humans First Wall?</span><b>+</b></button>
+            <div class="faq-answer"><p>It is a living wall at every city event where attendees answer one question: what part of being human will you never give up?</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button type="button" aria-expanded="false"><span>Will the event be technical?</span><b>+</b></button>
+            <div class="faq-answer"><p>No. This is not an AI trends session. It is a human conversation about relevance, courage, judgment, possibility and how to win without becoming machine-like.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <section class="promise">
+      <video class="promise-video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/figma/bgvideo.mp4" type="video/mp4" />
+      </video>
+      <div class="promise-overlay"></div>
+      <div class="wrap">
+        <p class="eyebrow reveal">The Humans First Promise</p>
+        <h2 class="display reveal promise-title">Help two people believe <span class="hand-highlight">they are capable of more.</span></h2>
+        <p class="reveal">A student. A colleague. A child. A stranger. Do not tell them about the movement. Do not tell them about the book. Just help them see themselves differently.</p>
+        <button class="btn reveal magnetic" type="button" data-open-modal>I accept the promise</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/figma/logo.png" alt="Humans First" />
+        <p class="lede footer-note">A six-city movement on human potential, self-belief and winning in the age of AI.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Visit</h4>
+          <a href="#top">Home</a>
+          <a href="#truth">The truth</a>
+          <a href="#sparks">Sparks</a>
+          <a href="#cities">Cities</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Join</h4>
+          <a href="#wall">The Wall</a>
+          <a href="#manifesto">Manifesto</a>
+          <a href="#videos">Watch</a>
+          <a href="#" data-open-modal>Register</a>
+        </div>
+      </div>
+    </div>
+    <img class="footer-graphic" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/99902f8e-baba-436e-aadf-2038baf65aba.svg" alt="Humans First footer graphic" />
+    <p class="footer-copyright">© 2026 Humans First. All rights reserved.</p>
+  </footer>
+
+  <div class="modal video-modal" id="videoModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+      <button class="modal-close" type="button" data-close-video-modal aria-label="Close video">×</button>
+      <h2 id="videoModalTitle" class="sr-only">Video player</h2>
+      <video id="videoModalPlayer" controls playsinline>
+        <source id="videoModalSource" src="" type="video/mp4" />
+        Your browser does not support embedded videos.
+      </video>
+    </div>
+  </div>
+
+  <script src="reveal.js?v=20260611-reveal-instant"></script>
+  <script src="humans-first-1.js?v=20260611-hf1-intro"></script>
+  <script src="script.js?v=20260611-rail-expand"></script>
+</body>
+</html>
