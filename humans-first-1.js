@@ -117,9 +117,12 @@
 
   function progressForMobileStep(step) {
     if (step <= 0) return 0;
-    if (step === 1) return 0.2;
-    const idx = step - 1;
-    const readP = (idx + 0.92) / pages.length;
+    // Step 1: cover fully open, first page resting flat.
+    if (step === 1) return 0.22;
+
+    // Land at the start of each page segment so one tap = one flip.
+    const pageIdx = Math.min(step - 1, pages.length - 1);
+    const readP = (pageIdx + 0.06) / pages.length;
     return 0.16 + 0.84 * readP;
   }
 
@@ -130,10 +133,16 @@
       tapHint.setAttribute("aria-hidden", "true");
       return;
     }
+
     tapHint.hidden = false;
     tapHint.removeAttribute("aria-hidden");
-    tapHint.textContent =
-      step <= 0 ? "Tap the book to open" : step >= pages.length ? "Tap to start again" : "Tap to turn the page";
+    tapHint.classList.toggle("is-prominent", step <= 0 && !mobileAnimating);
+    const label =
+      step <= 0 ? "Tap the book to explore" : step >= pages.length ? "Tap to start again" : "Tap to turn the page";
+    const icon = tapHint.querySelector(".hf-tap-icon");
+    tapHint.textContent = "";
+    if (icon) tapHint.appendChild(icon);
+    tapHint.appendChild(document.createTextNode(label));
   }
 
   function applyFrame(p, mobileMode = false) {
@@ -165,7 +174,7 @@
       heroCap.style.transform = mobileMode ? "none" : `translateX(-50%) translateY(${-p * 40}px)`;
     }
     if (cue) cue.style.opacity = heroFade;
-    if (tapHint && mobileMode) tapHint.style.opacity = mobileStep <= 0 ? 1 : 0.72;
+    if (tapHint && mobileMode) tapHint.style.opacity = mobileStep <= 0 && !mobileAnimating ? 1 : 0.72;
 
     cta.style.opacity = heroFade;
     cta.style.pointerEvents = p > 0.05 ? "none" : "auto";
@@ -221,16 +230,18 @@
     const fromP = mobileProgress;
     const toP = progressForMobileStep(nextStep);
 
+    mobileAnimating = true;
     mobileStep = nextStep;
     updateTapHint(nextStep);
 
     if (MOBILE_FLIP_MS === 0) {
       mobileProgress = toP;
+      mobileAnimating = false;
       applyFrame(mobileProgress, true);
+      updateTapHint(nextStep);
       return;
     }
 
-    mobileAnimating = true;
     const start = performance.now();
 
     const tick = (now) => {
@@ -245,6 +256,7 @@
         mobileProgress = toP;
         applyFrame(mobileProgress, true);
         mobileAnimating = false;
+        updateTapHint(nextStep);
       }
     };
 
@@ -367,8 +379,12 @@
     toggleBlocks();
   });
 
-  book.addEventListener("click", () => {
+  book.addEventListener("click", (e) => {
     if (isMobile()) {
+      if (mobileTouchHandled) {
+        e.preventDefault();
+        return;
+      }
       advanceMobile();
       return;
     }
@@ -384,11 +400,15 @@
   });
 
   let touchStartX = 0;
+  let touchStartY = 0;
+  let mobileTouchHandled = false;
+
   book.addEventListener(
     "touchstart",
     (e) => {
       if (!isMobile()) return;
       touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     },
     { passive: true }
   );
@@ -397,10 +417,28 @@
     "touchend",
     (e) => {
       if (!isMobile() || mobileAnimating) return;
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) < 40) return;
-      if (dx < 0) advanceMobile();
-      else if (mobileStep > 0) animateMobileToStep(mobileStep - 1);
+
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+
+      if (Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy)) {
+        mobileTouchHandled = true;
+        window.setTimeout(() => {
+          mobileTouchHandled = false;
+        }, 450);
+        if (dx < 0) advanceMobile();
+        else if (mobileStep > 0) animateMobileToStep(mobileStep - 1);
+        return;
+      }
+
+      if (Math.abs(dx) > 16 || Math.abs(dy) > 16) return;
+
+      mobileTouchHandled = true;
+      window.setTimeout(() => {
+        mobileTouchHandled = false;
+      }, 450);
+      advanceMobile();
     },
     { passive: true }
   );
