@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Mobile layer — hamburger nav, full-screen menu, phone reflows
+   Mirrors Vineet 5 / redesign.css responsive patterns.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Mobile nav — hamburger + full-screen menu
+   -------------------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: #111;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 899;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: min(90%, 420px);
+  text-align: center;
+}
+
+.mobile-menu-inner a {
+  padding: 8px 0;
+  font-size: clamp(28px, 8.5vw, 40px);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: none;
+}
+
+.mobile-menu-inner .btn {
+  margin-top: 20px;
+  width: min(100%, 300px);
+}
+
+/* --------------------------------------------------------------------------
+   Join modal (registration)
+   -------------------------------------------------------------------------- */
+.join-card {
+  width: min(520px, 100%);
+  text-align: left;
+}
+
+.join-title {
+  margin: 8px 0 0;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 900;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.join-sub {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.join-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.join-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.join-form input,
+.join-form select {
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.join-form input:focus,
+.join-form select:focus {
+  outline: none;
+  border-color: #111;
+  background: #fff;
+}
+
+.join-submit {
+  margin-top: 6px;
+  width: 100%;
+}
+
+.join-success {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--yellow);
+  color: #000;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.join-success[hidden] {
+  display: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Responsive — overflow, typography, layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 820px) {
+  :root {
+    --mobile-h2: clamp(23.2px, 7.68vw, 36.8px);
+    /* Gochi Hand reads smaller at the same px — bump slightly for visual parity */
+    --mobile-hand: clamp(25px, 8.2vw, 40px);
+  }
+
+  .hero {
+    padding-top: calc(var(--header) + 52px);
+    padding-bottom: clamp(28px, 5vh, 40px);
+  }
+
+  .video-grid,
+  .chapter-grid,
+  .footer-graphic,
+  .wall-embed,
+  .wall-embed iframe {
+    max-width: 100%;
+  }
+
+  .video-grid {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .video-card,
+  .video-card.featured,
+  .video-card:not(.featured) {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: clamp(240px, 62vw, 360px);
+  }
+
+  /* Uniform main headings below hero — match manifesto scale */
+  main .section-title,
+  main .display.section-title,
+  main .manifesto-title,
+  main .manifesto h2,
+  main .promise-title,
+  main .promise h2,
+  main .wall-head h2,
+  main .faq-title,
+  main .experience-title {
+    font-size: var(--mobile-h2);
+    line-height: 0.92;
+  }
+
+  main .section-subtitle {
+    margin-top: 18px;
+    font-size: var(--mobile-h2);
+    font-weight: 800;
+    line-height: 1.02;
+  }
+
+  main .hand-highlight {
+    white-space: nowrap;
+    max-width: 100%;
+    font-size: var(--mobile-hand);
+    font-weight: 400;
+    line-height: 1.05;
+    display: inline-block !important;
+    vertical-align: baseline;
+  }
+
+  main h2 .hand-highlight,
+  main h3 .hand-highlight,
+  main .section-subtitle .hand-highlight,
+  main .wall-head h2 .hand-highlight,
+  main mark.hand-highlight {
+    display: inline-block !important;
+  }
+
+  main .manifesto-title .hand-highlight,
+  main .promise-title .hand-highlight,
+  main .experience-title .hand-highlight,
+  main .faq-title .hand-highlight,
+  main .wall-head h2 .hand-highlight {
+    margin: 0;
+  }
+
+  main .hand-highlight::before {
+    width: calc(100% + 1em);
+    height: 1.35em;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 5vw, 40px);
+  }
+
+  .hf-book-anim .hf-hero-cap h2 {
+    font-size: var(--mobile-h2);
+    line-height: 0.92;
+  }
+
+  .hf-book-anim .hf-panel h3,
+  .hf-book-anim .hf-heading-highlight {
+    font-size: var(--mobile-h2);
+    line-height: 0.92;
+  }
+}
+
+@media (max-width: 720px) {
+  /* nav: logo centered + hamburger */
+  .nav {
+    grid-template-columns: 44px 1fr 44px;
+    justify-items: center;
+    gap: 10px;
+    width: calc(100% - 28px);
+  }
+
+  .nav-left,
+  .nav-right {
+    display: none;
+  }
+
+  .brand {
+    grid-column: 2;
+    justify-self: center;
+    min-width: 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+    grid-column: 3;
+    justify-self: end;
+  }
+
+  /* cities: stack name above date */
+  .city-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 4px;
+  }
+
+  .city-row .date {
+    font-size: 14px;
+    font-weight: 800;
+    color: rgba(36, 36, 36, 0.55);
+  }
+
+  /* experience rail: vertical timeline, every card expanded */
+  .experience-rail {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: clamp(40px, 9vw, 64px);
+    padding: 8px 0 4px;
+  }
+
+  .rail-card,
+  .rail-card.featured {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 18px;
+    text-align: left;
+  }
+
+  .rail-card:not(.featured) {
+    overflow: visible;
+  }
+
+  .rail-card:not(.featured) h5 {
+    transform: none;
+    white-space: normal;
+  }
+
+  .rail-card:not(.featured) p,
+  .rail-card p {
+    display: block;
+  }
+
+  .rail-card .rail-image,
+  .rail-card.featured .rail-image {
+    order: -1;
+    display: flex;
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: var(--yellow);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rail-icon,
+  .rail-card.featured .rail-icon {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .rail-card .rail-content,
+  .rail-card.featured .rail-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    width: auto;
+    height: auto;
+    text-align: left;
+  }
+
+  .rail-card p {
+    margin: 0;
+  }
+}

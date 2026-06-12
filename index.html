@@ -10,7 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260611-footer" />
-  <link rel="stylesheet" href="humans-first-1.css?v=20260611-book-copy" />
+  <link rel="stylesheet" href="humans-first-1.css?v=20260612-book-pad" />
+  <link rel="stylesheet" href="mobile.css?v=20260612-hero-top" />
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
@@ -21,9 +22,9 @@
     <nav class="nav" aria-label="Primary navigation" data-nav>
       <span class="nav-orb" aria-hidden="true"></span>
       <div class="nav-group nav-left">
-        <a href="#truth" data-section-link="truth">Truth</a>
-        <a href="#sparks" data-section-link="sparks">Sparks</a>
-        <a href="#experience" data-section-link="experience">Experience</a>
+        <a href="#manifesto" data-section-link="manifesto">Manifesto</a>
+        <a href="#book" data-section-link="book">The book</a>
+        <a href="#cities" data-section-link="cities">Cities</a>
       </div>
 
       <a href="#top" class="brand" aria-label="The Humans First Series home">
@@ -31,12 +32,27 @@
       </a>
 
       <div class="nav-group nav-right">
-        <a href="#cities" data-section-link="cities">Cities</a>
-        <a href="#faq" data-section-link="faq">FAQ</a>
+        <a href="#videos" data-section-link="videos">Watch</a>
+        <a href="#wall" data-section-link="wall">The Wall</a>
         <button class="nav-cta magnetic" type="button" data-open-modal>Join the movement</button>
       </div>
+
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu-inner" aria-label="Mobile navigation">
+      <a href="#manifesto" data-mobile-link>Manifesto</a>
+      <a href="#book" data-mobile-link>The book</a>
+      <a href="#cities" data-mobile-link>Cities</a>
+      <a href="#videos" data-mobile-link>Watch</a>
+      <a href="#wall" data-mobile-link>The Wall</a>
+      <button class="btn" type="button" data-open-modal data-mobile-link>Join the movement</button>
+    </nav>
+  </div>
 
   <main id="top">
     <section class="hero" data-hero>
@@ -46,24 +62,25 @@
           <span><b><img class="hero-mark" src="assets/figma/hero-mark.png" alt="Humans First" /></b></span>
         </h1>
 
-        <p class="hero-quote reveal on">“As machines become smarter, will human beings continue to believe in themselves?”</p>
-
-        <img class="hero-signature" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/168b845d-7080-4a93-8f59-592f2b1e17f7.png" alt="Vineet Nayar signature" />
-
         <div class="hero-actions">
           <button class="btn magnetic" type="button" data-open-modal>Join the movement</button>
           <a class="btn secondary magnetic" href="#wall">Write on the wall</a>
         </div>
+
+        <p class="hero-quote reveal on">“As machines become smarter, will human beings continue to believe in themselves?”</p>
+
+        <img class="hero-signature" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/168b845d-7080-4a93-8f59-592f2b1e17f7.png" alt="Vineet Nayar signature" />
       </div>
     </section>
 
-    <section class="hf-book-anim" data-hf-book aria-label="Humans First book experience">
+    <section class="hf-book-anim" id="book" data-hf-book aria-label="Humans First book experience">
       <div class="hf-track" id="hf-track">
         <div class="hf-stage">
           <div class="hf-hairline" id="hf-hairline" aria-hidden="true"></div>
-          <div class="hf-circle" id="hf-circle" aria-hidden="true"></div>
 
-          <div class="hf-book-scene" id="hf-bookScene">
+          <div class="hf-visual" id="hf-visual">
+            <div class="hf-circle" id="hf-circle" aria-hidden="true"></div>
+            <div class="hf-book-scene" id="hf-bookScene">
             <div class="hf-book" id="hf-book">
               <div class="hf-back-board" aria-hidden="true"></div>
               <div class="hf-page-stack" aria-hidden="true">
@@ -97,7 +114,10 @@
               <div class="hf-gloss" aria-hidden="true"></div>
               <button class="hf-cta" id="hf-cta" type="button"><span class="dot"></span>What it is</button>
             </div>
+            </div>
           </div>
+
+          <p class="hf-tap-hint" id="hf-tapHint" aria-hidden="true">Tap the book to explore</p>
 
           <div class="hf-blocks" id="hf-blocks">
             <div class="hf-block hf-block-tr">
@@ -124,32 +144,24 @@
 
           <div class="hf-copy">
             <div class="hf-panel" data-index="1">
-              <div class="num">01 — THE PREMISE</div>
-              <h3><span class="hf-heading-highlight">Humans first.</span></h3>
-              <p>Before the tools, before the speed, before the scale — the person. Everything starts there. This book is not a manual for working faster. It is a reminder that judgment, conscience, and care still belong to us.</p>
-              <p>Tap “What it is” to see how the movement begins. Then scroll slowly — the cover opens, the argument unfolds, and each page asks a different question about what we refuse to surrender.</p>
-              <span class="tag">Spark One</span>
+              <h3><span class="hf-heading-highlight">Trust</span></h3>
+              <p class="hf-panel-sub">Steady ground before speed</p>
+              <p>Trust is not certainty. It is the solid ground people stand on before the pace picks up, so they act on judgment instead of fear. Like an anchor that does not rush, but simply holds.</p>
             </div>
             <div class="hf-panel" data-index="2">
-              <div class="num">02 — THE TURN</div>
-              <h3><span class="hf-heading-highlight">Machines second.</span></h3>
-              <p>Not last, not feared — second. Powerful in service of judgment, never in place of it. Machines can calculate and recommend. They cannot carry the weight of a conscience or the context of a life lived in full.</p>
-              <p>Turn the page and watch what changes: speed without soul is still just noise. The book makes room for a different kind of winning — one that keeps the human filament at the center.</p>
-              <span class="tag">Spark Two</span>
+              <h3><span class="hf-heading-highlight">Empower</span></h3>
+              <p class="hf-panel-sub">Belief, not permission</p>
+              <p>Empowering people is not handing them access and waiting for them to ask. It is believing they can think, decide and lead without being told, so they stop waiting for instructions and start owning what comes next.</p>
             </div>
             <div class="hf-panel" data-index="3">
-              <div class="num">03 — THE SPARKS</div>
-              <h3><span class="hf-heading-highlight">Reimagine winning.</span></h3>
-              <p>Thirty sparks to rethink what success looks like in an age that automates the easy parts. Each one is small enough to hold in your hand and sharp enough to cut through the fog of inevitability.</p>
-              <p>Read one slowly. Push back if you disagree. This is not a book you finish in a hurry — it is a book you use to start better conversations in your team, your family, and your city.</p>
-              <span class="tag">Spark Three</span>
+              <h3><span class="hf-heading-highlight">Amplify</span></h3>
+              <p class="hf-panel-sub">Make people more, not less</p>
+              <p>AI was never meant to do your thinking. It should clear the dull, repetitive work so there is more room for judgment, imagination and care, leaving people sharper rather than smaller. The tool serves the person, not the other way around.</p>
             </div>
             <div class="hf-panel" data-index="4">
-              <div class="num">04 — THE STAKES</div>
-              <h3><span class="hf-heading-highlight">What stays human.</span></h3>
-              <p>Courage. Imagination. The willingness to matter — the parts no model should inherit. When the machines get good at everything easy, these are the parts that still decide who we become.</p>
-              <p>Close it gently when you reach the end. The question does not expire. It waits for the next room, the next city, and the next person who needs to believe in themselves again.</p>
-              <span class="tag">Spark Four</span>
+              <h3><span class="hf-heading-highlight">Reimagine</span></h3>
+              <p class="hf-panel-sub">Win a different game</p>
+              <p>Once a machine can copy the old way of winning, that way loses its value. The future belongs to people who ask better questions and decide what is worth building, choosing a game only a human can win.</p>
             </div>
           </div>
 
@@ -329,27 +341,27 @@
 
       <div class="wrap chapter-grid">
         <div class="city-list reveal" data-city-list>
-          <button class="city-row active" type="button" data-city="Delhi" data-date="25 July 2026" data-theme="Will average people still matter?" data-video="https://ik.imagekit.io/zkan0at6z/8643641-uhd_3840_2160_24fps.mp4?updatedAt=1780983507081" data-image="assets/figma/placeholder-delhi.png">
+          <button class="city-row active" type="button" data-city="Delhi" data-date="25 July 2026" data-theme="Will average people still matter?" data-video="assets/figma/vid1.mp4" data-image="assets/figma/placeholder-delhi.png">
             <span class="name">Delhi</span>
             <span class="date">25 July 2026</span>
           </button>
-          <button class="city-row" type="button" data-city="Mumbai" data-date="1 August 2026" data-theme="The Human Advantage" data-video="https://ik.imagekit.io/zkan0at6z/7727179-hd_1920_1080_25fps.mp4?updatedAt=1780983507754" data-image="assets/figma/placeholder-mumbai.png">
+          <button class="city-row" type="button" data-city="Mumbai" data-date="1 August 2026" data-theme="The Human Advantage" data-video="assets/figma/vid2.mp4" data-image="assets/figma/placeholder-mumbai.png">
             <span class="name">Mumbai</span>
             <span class="date">1 August 2026</span>
           </button>
-          <button class="city-row" type="button" data-city="Bengaluru" data-date="8 August 2026" data-theme="What AI Cannot Replace" data-video="https://ik.imagekit.io/zkan0at6z/6973228-hd_1920_1080_25fps.mp4?updatedAt=1780983507511" data-image="assets/figma/placeholder-bengaluru.png">
+          <button class="city-row" type="button" data-city="Bengaluru" data-date="8 August 2026" data-theme="What AI Cannot Replace" data-video="assets/figma/vid3.mp4" data-image="assets/figma/placeholder-bengaluru.png">
             <span class="name">Bengaluru</span>
             <span class="date">8 August 2026</span>
           </button>
-          <button class="city-row" type="button" data-city="Hyderabad" data-date="15 August 2026" data-theme="Why Human Potential Still Wins" data-video="https://ik.imagekit.io/zkan0at6z/6774848-uhd_3840_2160_30fps.mp4?updatedAt=1780983512081" data-image="assets/figma/placeholder-hyderabad.png">
+          <button class="city-row" type="button" data-city="Hyderabad" data-date="15 August 2026" data-theme="Why Human Potential Still Wins" data-video="assets/figma/vid4.mp4" data-image="assets/figma/placeholder-hyderabad.png">
             <span class="name">Hyderabad</span>
             <span class="date">15 August 2026</span>
           </button>
-          <button class="city-row" type="button" data-city="Chennai" data-date="22 August 2026" data-theme="Stay Curious. Stay Inspired." data-video="https://ik.imagekit.io/zkan0at6z/15439576_2160_3840_30fps.mp4?updatedAt=1780983519372" data-image="assets/figma/placeholder-chennai.png">
+          <button class="city-row" type="button" data-city="Chennai" data-date="22 August 2026" data-theme="Stay Curious. Stay Inspired." data-video="assets/figma/vid5.mp4" data-image="assets/figma/placeholder-chennai.png">
             <span class="name">Chennai</span>
             <span class="date">22 August 2026</span>
           </button>
-          <button class="city-row" type="button" data-city="Jaipur / Ahmedabad" data-date="29 August 2026" data-theme="What part of being human will you never give up?" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" data-image="assets/figma/placeholder-jaipur-ahmedabad.png">
+          <button class="city-row" type="button" data-city="Jaipur / Ahmedabad" data-date="29 August 2026" data-theme="What part of being human will you never give up?" data-video="assets/figma/vid6.mp4" data-image="assets/figma/placeholder-jaipur-ahmedabad.png">
             <span class="name">Jaipur / Ahmedabad</span>
             <span class="date">29 August 2026</span>
           </button>
@@ -358,7 +370,7 @@
         <aside class="city-preview reveal">
           <div class="city-preview-inner">
             <video class="city-video" id="cityVideo" autoplay muted loop playsinline>
-              <source id="cityVideoSource" src="https://ik.imagekit.io/zkan0at6z/8643641-uhd_3840_2160_24fps.mp4?updatedAt=1780983507081" type="video/mp4">
+              <source id="cityVideoSource" src="assets/vid1.mp4" type="video/mp4">
             </video>
             <img class="city-deco" alt="" aria-hidden="true" />
           </div>
@@ -374,7 +386,8 @@
       <div class="wrap center">
         <h2 class="display section-title reveal">Watch belief return to the room.</h2>
         <p class="section-subtitle reveal"><span class="hand-highlight">Vineet in action</span></p>
-        <p class="lede reveal">The best talks do not end with applause. They end with a person walking out differently.</p>
+        <p class="hero-quote reveal">“The greatest danger of the AI age is not smarter machines. It is humans slowly losing belief in their own uniqueness.”</p>
+        <img class="hero-signature reveal" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/168b845d-7080-4a93-8f59-592f2b1e17f7.png" alt="Vineet Nayar signature" />
       </div>
 
       <div class="wrap video-grid">
@@ -389,17 +402,26 @@
         <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=9x0AHyG-ke0">
           <img src="https://img.youtube.com/vi/9x0AHyG-ke0/maxresdefault.jpg" alt="Curiosity" />
           <span class="play" aria-hidden="true">▶</span>
-          <div class="video-overlay"><b>Curiosity</b></div>
+          <div class="video-overlay">
+            <b>Curiosity</b>
+            <p>When answers arrive too easily, curiosity is what keeps people learning, questioning and alive.</p>
+          </div>
         </article>
         <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=EW8lk860HPA">
           <img src="https://img.youtube.com/vi/EW8lk860HPA/maxresdefault.jpg" alt="Leadership" />
           <span class="play" aria-hidden="true">▶</span>
-          <div class="video-overlay"><b>Leadership</b></div>
+          <div class="video-overlay">
+            <b>Leadership</b>
+            <p>Leaders do not need to outrun the machine. They need to protect judgment, courage and care.</p>
+          </div>
         </article>
         <article class="video-card reveal" tabindex="0" role="button" data-youtube="https://www.youtube.com/watch?v=cCdu67s_C5E">
           <img src="https://img.youtube.com/vi/cCdu67s_C5E/maxresdefault.jpg" alt="Possibility" />
           <span class="play" aria-hidden="true">▶</span>
-          <div class="video-overlay"><b>Possibility</b></div>
+          <div class="video-overlay">
+            <b>Possibility</b>
+            <p>AI can optimize the path. Only humans can decide which future is worth building.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -481,23 +503,48 @@
         <div>
           <h4>Visit</h4>
           <a href="#top">Home</a>
-          <a href="#truth">The truth</a>
-          <a href="#sparks">Sparks</a>
+          <a href="#manifesto">Manifesto</a>
+          <a href="#book">The book</a>
           <a href="#cities">Cities</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div>
           <h4>Join</h4>
           <a href="#wall">The Wall</a>
           <a href="#manifesto">Manifesto</a>
           <a href="#videos">Watch</a>
-          <a href="#" data-open-modal>Register</a>
+          <button class="footer-link-btn" type="button" data-open-modal>Register</button>
         </div>
       </div>
     </div>
     <img class="footer-graphic" src="https://storage.googleapis.com/storage.magicpath.ai/user/291020608010072064/figma-assets/99902f8e-baba-436e-aadf-2038baf65aba.svg" alt="Humans First footer graphic" />
     <p class="footer-copyright">© 2026 Humans First. All rights reserved.</p>
   </footer>
+
+  <div class="modal join-modal" id="modal" aria-hidden="true">
+    <div class="modal-card join-card" role="dialog" aria-modal="true" aria-labelledby="joinModalTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+      <p class="eyebrow">Join the movement</p>
+      <h2 id="joinModalTitle" class="join-title">Save your seat.</h2>
+      <p class="join-sub">Six cities. Free, public and limited. Tell us where to keep a place for you.</p>
+      <form class="join-form" id="joinForm" novalidate>
+        <label>Your name<input type="text" name="name" autocomplete="name" required placeholder="Full name" /></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required placeholder="you@example.com" /></label>
+        <label>City
+          <select name="city" required>
+            <option value="" disabled selected>Choose a city</option>
+            <option>Delhi · 25 Jul</option>
+            <option>Mumbai · 1 Aug</option>
+            <option>Bengaluru · 8 Aug</option>
+            <option>Hyderabad · 15 Aug</option>
+            <option>Chennai · 22 Aug</option>
+            <option>Jaipur / Ahmedabad · 29 Aug</option>
+          </select>
+        </label>
+        <button class="btn join-submit" type="submit">Reserve my seat</button>
+      </form>
+      <p class="join-success" id="joinSuccess" hidden>You're on the list. We'll be in touch with the details.</p>
+    </div>
+  </div>
 
   <div class="modal video-modal" id="videoModal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
@@ -511,7 +558,7 @@
   </div>
 
   <script src="reveal.js?v=20260611-reveal-instant"></script>
-  <script src="humans-first-1.js?v=20260611-hf1-intro"></script>
-  <script src="script.js?v=20260611-rail-expand"></script>
+  <script src="humans-first-1.js?v=20260612-mobile-book"></script>
+  <script src="script.js?v=20260612-type"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
   .hairline{display:none;}
 
   .track{position:relative;height:860vh;}
-  .stage{position:sticky;top:0;height:100vh;overflow:hidden;}
+  .stage{position:sticky;top:0;height:100vh;padding-left:max(8%,clamp(20px,4vw,56px));padding-right:5%;box-sizing:border-box;overflow:hidden;}
 
   .circle{position:absolute;top:50%;left:50%;width:74vh;height:74vh;max-width:680px;max-height:680px;
     border-radius:50%;background:var(--yellow);transform:translate(-50%,-50%);will-change:transform;z-index:1;}
@@ -130,21 +130,23 @@
   .blocks.open .block{transform:translate(0,0);}
 
   /* left reading copy */
-  .copy{position:absolute;top:0;left:0;width:calc(50% - clamp(24px,3vw,48px));max-width:calc(50vw - clamp(24px,3vw,48px));
-    height:100vh;display:flex;align-items:center;padding:0 clamp(20px,3vw,40px) clamp(20px,3vw,40px) clamp(28px,4vw,56px);
-    z-index:4;pointer-events:none;box-sizing:border-box;}
-  .panel{position:absolute;opacity:0;transform:translateY(26px);
-    transition:opacity .55s ease,transform .55s ease;width:100%;max-width:none;}
+  .copy{position:absolute;top:0;left:0;right:auto;width:100%;max-width:46%;height:100vh;max-height:100vh;
+    display:block;padding:clamp(28px,5vh,64px) 0;z-index:4;pointer-events:auto;box-sizing:border-box;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;}
+  .copy::-webkit-scrollbar{display:none;}
+  .panel{position:absolute;top:clamp(28px,5vh,64px);right:0;bottom:clamp(28px,5vh,64px);left:0;
+    opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;width:auto;max-width:100%;
+    padding-left:max(150px,8vw);overflow:visible;display:flex;flex-direction:column;justify-content:center;}
   .panel.active{opacity:1;transform:translateY(0);}
   .panel .num{display:none;}
-  .panel h3{margin:0 0 .85rem;font-family:"Inter",system-ui,sans-serif;font-size:clamp(21.6px,3.14vw,41.6px);
-    font-weight:900;letter-spacing:-0.02em;line-height:1.06;color:#111;white-space:nowrap;}
-  .heading-highlight{position:relative;display:inline-block;padding:.1em .42em;color:#111;font-family:inherit;
-    font-weight:900;line-height:1.06;white-space:nowrap;z-index:1;}
-  .heading-highlight::before{content:"";position:absolute;left:-.38em;right:-.38em;top:50%;transform:translateY(-50%);
-    height:1.22em;background-image:url(assets/figma/Vector.png);background-repeat:no-repeat;background-position:center;
+  .panel h3{margin:0 0 .85rem;font-family:"Inter",system-ui,sans-serif;font-size:clamp(26px,3.75vw,50px);
+    font-weight:900;letter-spacing:-0.02em;line-height:1.06;color:#111;white-space:normal;}
+  .heading-highlight{position:relative;display:inline;padding:.1em .42em;color:#111;font-family:inherit;
+    font-weight:900;line-height:1.06;white-space:normal;box-decoration-break:clone;-webkit-box-decoration-break:clone;z-index:1;}
+  .heading-highlight::before{content:"";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+    height:1.3em;background-image:url(assets/figma/Vector.png);background-repeat:no-repeat;background-position:center;
     background-size:100% 100%;z-index:-1;pointer-events:none;}
   .panel p{color:#444;font-size:clamp(16px,1.125vw,18px);font-weight:400;line-height:1.36;margin-bottom:.6rem;}
+  .panel-sub{margin:-.35rem 0 .75rem;color:#111;font-size:clamp(15px,1vw,17px);font-weight:700;letter-spacing:.02em;line-height:1.3;}
   .panel .tag{display:inline-block;margin-top:.6rem;font-size:.66rem;letter-spacing:.2em;
     text-transform:uppercase;color:var(--gray);border:1px solid var(--gray-light);padding:.45rem .9rem;border-radius:2px;}
 
@@ -165,12 +167,12 @@
   .outro .attr{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);}
 
   @media (max-width:820px){
-    .track{height:auto;}.stage{position:relative;height:auto;overflow:visible;}
+    .track{height:auto;}.stage{position:relative;height:auto;padding-left:0;padding-right:0;overflow:visible;}
     .hairline,.cue,.blocks,.cta{display:none;}
     .circle{position:relative;top:auto;left:auto;transform:none;margin:6vh auto 0;}
     .book-scene{position:relative;top:auto;left:auto;transform:none;margin:-58vh auto 0;}
-    .copy{position:relative;width:100%;height:auto;padding:8vh 8vw;}
-    .panel{position:relative;opacity:1;transform:none;margin-bottom:10vh;}
+    .copy{position:relative;right:auto;width:100%;max-width:none;height:auto;max-height:none;padding:8vh 8vw;overflow:visible;}
+    .panel{position:relative;top:auto;right:auto;bottom:auto;display:block;justify-content:flex-start;opacity:1;transform:none;margin-bottom:10vh;padding-left:0;}
     .panel h3,.heading-highlight{white-space:normal;}
     .hero-cap{position:relative;bottom:auto;left:auto;transform:none;margin:6vh 0;}
   }
@@ -236,28 +238,24 @@
 
       <div class="copy">
         <div class="panel" data-index="1">
-          <div class="num">01 — THE PREMISE</div>
-          <h3><span class="heading-highlight">TRUST</span></h3>
+          <h3><span class="heading-highlight">Trust</span></h3>
+          <p class="panel-sub">Steady ground before speed</p>
           <p>Trust is not certainty. It is the solid ground people stand on before the pace picks up, so they act on judgment instead of fear. Like an anchor that does not rush, but simply holds.</p>
-          <span class="tag">Spark One</span>
         </div>
         <div class="panel" data-index="2">
-          <div class="num">02 — THE TURN</div>
-          <h3><span class="heading-highlight">EMPOWER</span></h3>
+          <h3><span class="heading-highlight">Empower</span></h3>
+          <p class="panel-sub">Belief, not permission</p>
           <p>Empowering people is not handing them access and waiting for them to ask. It is believing they can think, decide and lead without being told, so they stop waiting for instructions and start owning what comes next.</p>
-          <span class="tag">Spark Two</span>
         </div>
         <div class="panel" data-index="3">
-          <div class="num">03 — THE SPARKS</div>
-          <h3><span class="heading-highlight">AMPLIFY</span></h3>
-          <p>not less AI was never meant to do your thinking. It should clear the dull, repetitive work so there is more room for judgment, imagination and care, leaving people sharper rather than smaller. The tool serves the person, not the other way around.</p>
-          <span class="tag">Spark Three</span>
+          <h3><span class="heading-highlight">Amplify</span></h3>
+          <p class="panel-sub">Make people more, not less</p>
+          <p>AI was never meant to do your thinking. It should clear the dull, repetitive work so there is more room for judgment, imagination and care, leaving people sharper rather than smaller. The tool serves the person, not the other way around.</p>
         </div>
         <div class="panel" data-index="4">
-          <div class="num">04 — THE STAKES</div>
-          <h3><span class="heading-highlight">REIMAGINE</span></h3>
+          <h3><span class="heading-highlight">Reimagine</span></h3>
+          <p class="panel-sub">Win a different game</p>
           <p>Once a machine can copy the old way of winning, that way loses its value. The future belongs to people who ask better questions and decide what is worth building, choosing a game only a human can win.</p>
-          <span class="tag">Spark Four</span>
         </div>
       </div>
 
@@ -282,6 +280,8 @@
   const cta=document.getElementById('cta');
   const heroCap=document.getElementById('heroCap');
   const cue=document.getElementById('cue');
+  const copyEl=document.querySelector('.copy');
+  const stage=document.querySelector('.stage');
   const panels=[...document.querySelectorAll('.panel')];
   const turn=document.getElementById('turn');
   const pageBase=document.getElementById('pageBase');
@@ -321,6 +321,20 @@
     my=clamp((e.clientY-cy)/(window.innerHeight/2),-1,1);});
 
   let scrollProgress=0;
+  function updateCopyWidth(xPct){
+    if(!copyEl||!stage||window.innerWidth<=820){if(copyEl)copyEl.style.maxWidth='';return;}
+    const stageH=window.innerHeight;
+    const radius=Math.min(stageH*0.37,340);
+    const styles=getComputedStyle(copyEl);
+    const padLeft=parseFloat(styles.paddingLeft)||0;
+    const padRight=parseFloat(styles.paddingRight)||0;
+    const stagePadLeft=parseFloat(getComputedStyle(stage).paddingLeft)||0;
+    const innerW=stage.clientWidth-stagePadLeft*2;
+    const bookCenterX=stagePadLeft+innerW*0.5+(xPct/100)*innerW;
+    const maxW=Math.round(bookCenterX-radius-48);
+    const clamped=Math.max(280,Math.min(maxW,innerW*0.46));
+    copyEl.style.maxWidth=`${clamped+padLeft+padRight}px`;
+  }
   function onScroll(){const rect=track.getBoundingClientRect();
     const total=rect.height-window.innerHeight;scrollProgress=clamp(-rect.top/total);}
   window.addEventListener('scroll',onScroll,{passive:true});
@@ -338,6 +352,7 @@
     const circleScale=lerp(0.78,1,introT);
     bookScene.style.transform=`translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${scale})`;
     circle.style.transform=`translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${circleScale})`;
+    updateCopyWidth(xPct);
 
     const heroFade=1-clamp(p/0.10);
     heroCap.style.opacity=heroFade;heroCap.style.transform=`translateX(-50%) translateY(${-p*40}px)`;

@@ -132,16 +132,41 @@ document.getElementById("wallForm")?.addEventListener("submit", (event) => {
   input.value = "";
 });
 
+const navToggle = document.querySelector("[data-nav-toggle]");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function setBodyLock() {
+  const anyOpen =
+    mobileMenu?.classList.contains("open") ||
+    modal?.classList.contains("open") ||
+    videoModal?.classList.contains("open");
+  body.classList.toggle("modal-open", !!anyOpen);
+}
+
+function openMobileMenu() {
+  mobileMenu?.classList.add("open");
+  mobileMenu?.setAttribute("aria-hidden", "false");
+  navToggle?.setAttribute("aria-expanded", "true");
+  setBodyLock();
+}
+
+function closeMobileMenu() {
+  mobileMenu?.classList.remove("open");
+  mobileMenu?.setAttribute("aria-hidden", "true");
+  navToggle?.setAttribute("aria-expanded", "false");
+  setBodyLock();
+}
+
 function openModal() {
   modal?.classList.add("open");
   modal?.setAttribute("aria-hidden", "false");
-  body.classList.add("modal-open");
+  setBodyLock();
 }
 
 function closeModal() {
   modal?.classList.remove("open");
   modal?.setAttribute("aria-hidden", "true");
-  body.classList.remove("modal-open");
+  setBodyLock();
 }
 
 function openVideoModal(src) {
@@ -151,14 +176,14 @@ function openVideoModal(src) {
   videoPlayer.play().catch(() => {});
   videoModal.classList.add("open");
   videoModal.setAttribute("aria-hidden", "false");
-  body.classList.add("modal-open");
+  setBodyLock();
 }
 
 function closeVideoModal() {
   if (!videoModal || !videoPlayer || !videoSource) return;
   videoModal.classList.remove("open");
   videoModal.setAttribute("aria-hidden", "true");
-  body.classList.remove("modal-open");
+  setBodyLock();
   videoPlayer.pause();
   videoSource.src = "";
   videoPlayer.load();
@@ -189,8 +214,30 @@ videoModal?.addEventListener("click", (event) => {
   if (event.target === videoModal) closeVideoModal();
 });
 
+navToggle?.addEventListener("click", () => {
+  if (mobileMenu?.classList.contains("open")) closeMobileMenu();
+  else openMobileMenu();
+});
+
+document.querySelectorAll("[data-mobile-link]").forEach((link) => {
+  link.addEventListener("click", closeMobileMenu);
+});
+
+const joinForm = document.getElementById("joinForm");
+joinForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!joinForm.checkValidity()) {
+    joinForm.reportValidity();
+    return;
+  }
+  joinForm.hidden = true;
+  const success = document.getElementById("joinSuccess");
+  if (success) success.hidden = false;
+});
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    closeMobileMenu();
     closeModal();
     closeVideoModal();
   }
@@ -281,6 +328,43 @@ function setActiveNav() {
 window.addEventListener("scroll", setActiveNav, { passive: true });
 window.addEventListener("resize", setActiveNav);
 setActiveNav();
+
+const mobileHeadingQuery = window.matchMedia("(max-width: 820px)");
+
+function fitHandHighlights() {
+  document.querySelectorAll(".hand-highlight").forEach((el) => {
+    el.style.fontSize = "";
+    el.removeAttribute("data-fit-size");
+  });
+
+  if (!mobileHeadingQuery.matches) return;
+
+  document.querySelectorAll("main .hand-highlight").forEach((el) => {
+    const container = el.parentElement;
+    if (!container) return;
+
+    el.style.whiteSpace = "nowrap";
+    const maxWidth = container.clientWidth;
+    let fontSize = parseFloat(getComputedStyle(el).fontSize) || 25;
+    const minSize = 13;
+
+    while (el.scrollWidth > maxWidth && fontSize > minSize) {
+      fontSize -= 0.5;
+      el.style.fontSize = `${fontSize}px`;
+    }
+
+    el.dataset.fitSize = String(fontSize);
+  });
+}
+
+window.addEventListener("resize", fitHandHighlights);
+mobileHeadingQuery.addEventListener("change", fitHandHighlights);
+if (document.fonts?.ready) {
+  document.fonts.ready.then(fitHandHighlights);
+} else {
+  fitHandHighlights();
+}
+window.addEventListener("load", fitHandHighlights);
 
 document.querySelectorAll("[data-faq] .faq-item button").forEach((button) => {
   button.addEventListener("click", () => {

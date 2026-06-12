@@ -32,6 +32,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 body {
@@ -67,7 +68,8 @@ button {
 
 img {
   display: block;
-  max-width: 120%;
+  max-width: 100%;
+  height: auto;
 }
 
 mark,
@@ -301,7 +303,13 @@ h6 .hand-highlight {
 
 .wrap {
   width: min(var(--max), calc(100% - (var(--gutter) * 2)));
+  max-width: 100%;
   margin: 0 auto;
+}
+
+main {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .truth > .wrap {
@@ -486,7 +494,7 @@ h6 .hand-highlight {
 
 .hero-quote {
   max-width: 800px;
-  margin-top: 30px;
+  margin-top: 24px;
   color: var(--muted);
   font-size: var(--body-size);
   font-weight: 400;
@@ -830,6 +838,14 @@ main > .promise {
   font-size: var(--h2-size);
 }
 
+.video-section .hero-quote {
+  margin: 28px auto 0;
+}
+
+.video-section .hero-signature {
+  margin: 22px auto 0;
+}
+
 .video-grid {
   display: flex;
   flex-wrap: nowrap;
@@ -896,8 +912,13 @@ main > .promise {
 .video-overlay p {
   margin: 9px 0 0;
   color: rgba(255, 255, 255, 0.84);
-  font-size: 16px;
+  font-size: var(--body-size);
+  font-weight: 400;
   line-height: 1.4;
+}
+
+.video-card:not(.featured) .video-overlay p {
+  display: none;
 }
 
 .play {
@@ -1174,7 +1195,8 @@ main > .promise {
   text-transform: uppercase;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links .footer-link-btn {
   position: relative;
   z-index: 0;
   display: block;
@@ -1193,7 +1215,8 @@ main > .promise {
   transition: color 180ms ease;
 }
 
-.footer-links a::before {
+.footer-links a::before,
+.footer-links .footer-link-btn::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -1212,12 +1235,16 @@ main > .promise {
 }
 
 .footer-links a:hover,
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.footer-links .footer-link-btn:hover,
+.footer-links .footer-link-btn:focus-visible {
   color: #000;
 }
 
 .footer-links a:hover::before,
-.footer-links a:focus-visible::before {
+.footer-links a:focus-visible::before,
+.footer-links .footer-link-btn:hover::before,
+.footer-links .footer-link-btn:focus-visible::before {
   opacity: 1;
 }
 
@@ -1444,8 +1471,8 @@ main > .promise {
 
   .hero {
     min-height: 94svh;
-    padding-top: calc(var(--header) + 36px);
-    padding-bottom: 64px;
+    padding-top: calc(var(--header) + 52px);
+    padding-bottom: clamp(28px, 5vh, 40px);
   }
 
   .hero-logo {
@@ -1487,9 +1514,13 @@ main > .promise {
 
   .cards,
   .video-grid,
-  .footer-links,
   .form {
     grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 5vw, 40px);
   }
 
   .card {
@@ -1886,10 +1917,11 @@ main > .promise {
 .experience { overflow-x: hidden; }
 
 .experience > .wrap.experience-rail {
-  width: min(calc(100vw - 8%), 100%);
+  width: min(100%, calc(100% - (var(--gutter) * 2)));
   max-width: none;
   padding-inline: 5%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .experience-rail {

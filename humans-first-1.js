@@ -12,6 +12,8 @@
   const cta = root.querySelector("#hf-cta");
   const heroCap = root.querySelector("#hf-heroCap");
   const cue = root.querySelector("#hf-cue");
+  const tapHint = root.querySelector("#hf-tapHint");
+  const copyEl = root.querySelector(".hf-copy");
   const panels = [...root.querySelectorAll(".hf-panel")];
   const turn = root.querySelector("#hf-turn");
   const pageBase = root.querySelector("#hf-pageBase");
@@ -22,7 +24,6 @@
   }
 
   const mobileQuery = window.matchMedia("(max-width: 820px)");
-
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const pages = [
@@ -59,6 +60,17 @@
   let running = false;
   let wasPassed = false;
 
+  let mobileStep = 0;
+  let mobileProgress = 0;
+  let mobileAnimating = false;
+  let mobileAnimRaf = 0;
+
+  const MOBILE_FLIP_MS = reducedMotion ? 0 : 720;
+
+  function isMobile() {
+    return mobileQuery.matches;
+  }
+
   function setCtaLabel(label) {
     cta.textContent = "";
     const dot = document.createElement("span");
@@ -68,7 +80,7 @@
   }
 
   function toggleBlocks() {
-    if (scrollProgress > 0.1) return;
+    if (scrollProgress > 0.1 || isMobile()) return;
     blocksOpen = !blocksOpen;
     blocksWrap.classList.toggle("open", blocksOpen);
     setCtaLabel(blocksOpen ? "Close" : "What it is");
@@ -84,58 +96,47 @@
     return window.innerHeight - getStickyTop();
   }
 
-  function updatePinState() {
-    if (mobileQuery.matches) {
-      stage.classList.remove("is-pinned", "is-ended", "is-passed");
+  function updateCopyWidth(xPct) {
+    if (!copyEl || isMobile()) {
+      if (copyEl) copyEl.style.maxWidth = "";
       return;
     }
 
-    const stickyTop = getStickyTop();
-    const stageHeight = getStageHeight();
-    const rect = track.getBoundingClientRect();
-    const scrollable = track.offsetHeight - stageHeight;
-    const pinRelease = stickyTop + stageHeight;
-    const passed = rect.bottom <= stickyTop;
-    const beforePin = rect.top > stickyTop;
-    const pinning = !passed && !beforePin && rect.bottom > pinRelease;
-
-    stage.classList.toggle("is-passed", passed);
-    stage.classList.toggle("is-pinned", pinning);
-    stage.classList.toggle("is-ended", !passed && !beforePin && !pinning);
-
-    if (passed) {
-      scrollProgress = 1;
-    } else if (beforePin) {
-      scrollProgress = 0;
-    } else if (pinning) {
-      scrollProgress = scrollable > 0 ? clamp((stickyTop - rect.top) / scrollable) : 0;
-    } else {
-      scrollProgress = 1;
-    }
-
-    if (passed && !wasPassed) {
-      window.dispatchEvent(new CustomEvent("hf-book-complete"));
-    }
-    wasPassed = passed;
+    const stageH = getStageHeight();
+    const radius = Math.min(stageH * 0.37, 340);
+    const styles = getComputedStyle(copyEl);
+    const padLeft = parseFloat(styles.paddingLeft) || 0;
+    const padRight = parseFloat(styles.paddingRight) || 0;
+    const stagePadLeft = parseFloat(getComputedStyle(stage).paddingLeft) || 0;
+    const innerW = stage.clientWidth - stagePadLeft * 2;
+    const bookCenterX = stagePadLeft + innerW * 0.5 + (xPct / 100) * innerW;
+    const maxW = Math.round(bookCenterX - radius - 48);
+    const clamped = Math.max(280, Math.min(maxW, innerW * 0.46));
+    copyEl.style.maxWidth = `${clamped + padLeft + padRight}px`;
   }
 
-  function onScroll() {
-    updatePinState();
-
-    const rect = track.getBoundingClientRect();
-    const inView = rect.bottom > 0 && rect.top < window.innerHeight;
-    if (inView && !running) {
-      running = true;
-      requestAnimationFrame(render);
-    }
-    if (!inView) {
-      running = false;
-    }
+  function progressForMobileStep(step) {
+    if (step <= 0) return 0;
+    if (step === 1) return 0.2;
+    const idx = step - 1;
+    const readP = (idx + 0.92) / pages.length;
+    return 0.16 + 0.84 * readP;
   }
 
-  function render() {
-    const p = scrollProgress;
+  function updateTapHint(step) {
+    if (!tapHint) return;
+    if (!isMobile()) {
+      tapHint.hidden = true;
+      tapHint.setAttribute("aria-hidden", "true");
+      return;
+    }
+    tapHint.hidden = false;
+    tapHint.removeAttribute("aria-hidden");
+    tapHint.textContent =
+      step <= 0 ? "Tap the book to open" : step >= pages.length ? "Tap to start again" : "Tap to turn the page";
+  }
 
+  function applyFrame(p, mobileMode = false) {
     if (p > 0.06 && blocksOpen) {
       blocksOpen = false;
       blocksWrap.classList.remove("open");
@@ -143,23 +144,36 @@
     }
 
     const introT = easeInOut(clamp(p / 0.18));
-    const xPct = lerp(0, 26, introT);
-    const yVh = lerp(-9, 0, introT);
-    const scale = lerp(0.78, 1, introT);
-    const circleScale = lerp(0.78, 1, introT);
-    bookScene.style.transform = `translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${scale})`;
-    circle.style.transform = `translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${circleScale})`;
+    const xPct = mobileMode ? 0 : lerp(0, 26, introT);
+    const yVh = mobileMode ? 0 : lerp(-9, 0, introT);
+    const scale = lerp(mobileMode ? 0.88 : 0.78, 1, introT);
+    const circleScale = scale;
 
-    const heroFade = 1 - clamp(p / 0.1);
+    if (mobileMode) {
+      bookScene.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      circle.style.transform = `scale(${circleScale})`;
+    } else {
+      bookScene.style.transform = `translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${scale})`;
+      circle.style.transform = `translate(calc(-50% + ${xPct}vw), calc(-50% + ${yVh}vh)) scale(${circleScale})`;
+    }
+
+    updateCopyWidth(xPct);
+
+    const heroFade = mobileMode ? (mobileStep <= 0 ? 1 : 1 - clamp(p / 0.12)) : 1 - clamp(p / 0.1);
     if (heroCap) {
       heroCap.style.opacity = heroFade;
-      heroCap.style.transform = `translateX(-50%) translateY(${-p * 40}px)`;
+      heroCap.style.transform = mobileMode ? "none" : `translateX(-50%) translateY(${-p * 40}px)`;
     }
     if (cue) cue.style.opacity = heroFade;
+    if (tapHint && mobileMode) tapHint.style.opacity = mobileStep <= 0 ? 1 : 0.72;
+
     cta.style.opacity = heroFade;
     cta.style.pointerEvents = p > 0.05 ? "none" : "auto";
+
     const baseRotY = lerp(-16, -20, introT);
-    book.style.transform = `rotateY(${baseRotY + mx * 12}deg) rotateX(${6 - my * 9}deg)`;
+    book.style.transform = mobileMode
+      ? `rotateY(${baseRotY}deg)`
+      : `rotateY(${baseRotY + mx * 12}deg) rotateX(${6 - my * 9}deg)`;
 
     const openF = easeInOut(clamp((p - 0.06) / 0.14));
     const coverOpen = openF > 0.02;
@@ -200,6 +214,120 @@
       pageTurn.dataset.pageIdx = "";
       renderPage(pageBase, idx);
     }
+  }
+
+  function animateMobileToStep(targetStep) {
+    const nextStep = clamp(targetStep, 0, pages.length);
+    const fromP = mobileProgress;
+    const toP = progressForMobileStep(nextStep);
+
+    mobileStep = nextStep;
+    updateTapHint(nextStep);
+
+    if (MOBILE_FLIP_MS === 0) {
+      mobileProgress = toP;
+      applyFrame(mobileProgress, true);
+      return;
+    }
+
+    mobileAnimating = true;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const t = clamp((now - start) / MOBILE_FLIP_MS);
+      const eased = easeInOut(t);
+      mobileProgress = lerp(fromP, toP, eased);
+      applyFrame(mobileProgress, true);
+
+      if (t < 1) {
+        mobileAnimRaf = requestAnimationFrame(tick);
+      } else {
+        mobileProgress = toP;
+        applyFrame(mobileProgress, true);
+        mobileAnimating = false;
+      }
+    };
+
+    cancelAnimationFrame(mobileAnimRaf);
+    mobileAnimRaf = requestAnimationFrame(tick);
+  }
+
+  function advanceMobile() {
+    if (mobileAnimating) return;
+    if (mobileStep < pages.length) {
+      animateMobileToStep(mobileStep + 1);
+      return;
+    }
+    resetMobile();
+  }
+
+  function resetMobile() {
+    cancelAnimationFrame(mobileAnimRaf);
+    mobileAnimating = false;
+    mobileStep = 0;
+    mobileProgress = 0;
+    applyFrame(0, true);
+    updateTapHint(0);
+  }
+
+  function updatePinState() {
+    if (isMobile()) {
+      stage.classList.remove("is-pinned", "is-ended", "is-passed");
+      return;
+    }
+
+    const stickyTop = getStickyTop();
+    const stageHeight = getStageHeight();
+    const rect = track.getBoundingClientRect();
+    const scrollable = track.offsetHeight - stageHeight;
+    const pinRelease = stickyTop + stageHeight;
+    const passed = rect.bottom <= stickyTop;
+    const beforePin = rect.top > stickyTop;
+    const pinning = !passed && !beforePin && rect.bottom > pinRelease;
+
+    stage.classList.toggle("is-passed", passed);
+    stage.classList.toggle("is-pinned", pinning);
+    stage.classList.toggle("is-ended", !passed && !beforePin && !pinning);
+
+    if (passed) {
+      scrollProgress = 1;
+    } else if (beforePin) {
+      scrollProgress = 0;
+    } else if (pinning) {
+      scrollProgress = scrollable > 0 ? clamp((stickyTop - rect.top) / scrollable) : 0;
+    } else {
+      scrollProgress = 1;
+    }
+
+    if (passed && !wasPassed) {
+      window.dispatchEvent(new CustomEvent("hf-book-complete"));
+    }
+    wasPassed = passed;
+  }
+
+  function onScroll() {
+    updatePinState();
+
+    if (isMobile()) {
+      running = false;
+      return;
+    }
+
+    const rect = track.getBoundingClientRect();
+    const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+    if (inView && !running) {
+      running = true;
+      requestAnimationFrame(render);
+    }
+    if (!inView) {
+      running = false;
+    }
+  }
+
+  function render() {
+    if (isMobile()) return;
+
+    applyFrame(scrollProgress, false);
 
     const rect = track.getBoundingClientRect();
     if (rect.bottom > 0 && rect.top < window.innerHeight) {
@@ -209,16 +337,76 @@
     }
   }
 
+  function onMobileModeChange() {
+    cancelAnimationFrame(mobileAnimRaf);
+    mobileAnimating = false;
+
+    if (isMobile()) {
+      running = false;
+      resetMobile();
+      book.setAttribute("role", "button");
+      book.setAttribute("aria-label", "Open and flip through the book");
+      book.tabIndex = 0;
+      return;
+    }
+
+    book.removeAttribute("role");
+    book.removeAttribute("aria-label");
+    book.tabIndex = -1;
+    if (tapHint) tapHint.hidden = true;
+    scrollProgress = 0;
+    onScroll();
+    if (!reducedMotion) {
+      running = true;
+      requestAnimationFrame(render);
+    }
+  }
+
   cta.addEventListener("click", (e) => {
     e.stopPropagation();
     toggleBlocks();
   });
 
   book.addEventListener("click", () => {
+    if (isMobile()) {
+      advanceMobile();
+      return;
+    }
     if (scrollProgress < 0.1) toggleBlocks();
   });
 
+  book.addEventListener("keydown", (e) => {
+    if (!isMobile()) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      advanceMobile();
+    }
+  });
+
+  let touchStartX = 0;
+  book.addEventListener(
+    "touchstart",
+    (e) => {
+      if (!isMobile()) return;
+      touchStartX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  book.addEventListener(
+    "touchend",
+    (e) => {
+      if (!isMobile() || mobileAnimating) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) < 40) return;
+      if (dx < 0) advanceMobile();
+      else if (mobileStep > 0) animateMobileToStep(mobileStep - 1);
+    },
+    { passive: true }
+  );
+
   root.addEventListener("mousemove", (e) => {
+    if (isMobile()) return;
     const r = book.getBoundingClientRect();
     const cx = r.left + r.width / 2;
     const cy = r.top + r.height / 2;
@@ -228,16 +416,17 @@
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
-  mobileQuery.addEventListener("change", onScroll);
+  mobileQuery.addEventListener("change", onMobileModeChange);
 
   renderPage(pageBase, 0);
   setCtaLabel("What it is");
   onScroll();
+  onMobileModeChange();
 
-  if (!reducedMotion) {
+  if (!reducedMotion && !isMobile()) {
     running = true;
     requestAnimationFrame(render);
-  } else {
+  } else if (reducedMotion && !isMobile()) {
     pageBase.classList.add("show");
     panels.forEach((pl, i) => pl.classList.toggle("active", i === 0));
     if (heroCap) heroCap.style.opacity = "1";
