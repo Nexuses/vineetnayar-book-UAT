@@ -319,6 +319,7 @@
   main .promise-title,
   main .promise h2,
   main .wall-head h2,
+  main .hf-wall-q,
   main .faq-title,
   main .experience-title {
     font-size: var(--mobile-h2);
@@ -356,6 +357,11 @@
   main .faq-title .hand-highlight,
   main .wall-head h2 .hand-highlight {
     margin: 0;
+  }
+
+  main .hf-wall-q .hand-highlight {
+    display: table !important;
+    margin: 12px auto 0;
   }
 
   main .hand-highlight::before {

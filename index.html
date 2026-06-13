@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles.css?v=20260612-cities" />
   <link rel="stylesheet" href="humans-first-1.css?v=20260612-safari" />
   <link rel="stylesheet" href="mobile.css?v=20260612-manifesto" />
+  <link rel="stylesheet" href="wall-widget.css?v=20260612-wall" />
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
@@ -430,6 +431,7 @@
       </div>
     </section>
 
+    <!-- Previous wall section (iframe embed) — hidden
     <section class="wall-section" id="wall">
       <div class="wall-head center">
         <p class="eyebrow">The Humans First Wall</p>
@@ -444,6 +446,24 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
+      </div>
+    </section>
+    -->
+
+    <!-- Humans First Wall widget (scoped from humans-first-series-home_2 (1).html) -->
+    <section class="hf-wall-widget" id="wall" data-hf-wall aria-label="The Humans First Wall">
+      <div class="hf-wall-wrap">
+        <p class="hf-wall-kicker reveal">The Humans First Wall</p>
+        <h2 class="display hf-wall-q reveal">What part of being human will you<br><span class="hand-highlight">never give up?</span></h2>
+        <p class="hf-wall-intro reveal">You'll answer it in your own handwriting, beside a few hundred strangers answering the same. A card gets thrown away. A wall becomes a memory, and a record of what humans refuse to lose in the age of AI.</p>
+        <div class="hf-wall-chip-row reveal" data-hf-wall-chips></div>
+        <form class="hf-wall-form reveal" data-hf-wall-form>
+          <input class="hf-wall-word" data-hf-wall-word maxlength="22" placeholder="Your word…" aria-label="Your word" />
+          <input class="hf-wall-name" data-hf-wall-name maxlength="18" placeholder="Sign your name" aria-label="Your name" />
+          <button class="hf-wall-submit" type="submit">Add it →</button>
+        </form>
+        <div class="hf-wall-grid" data-hf-wall-grid></div>
+        <p class="hf-wall-count reveal"><b data-hf-wall-count>6</b> answers and counting across India.</p>
       </div>
     </section>
 
@@ -561,6 +581,7 @@
 
   <script src="reveal.js?v=20260612-safari"></script>
   <script src="humans-first-1.js?v=20260612-mobile-book-tap"></script>
+  <script src="wall-widget.js?v=20260612-wall"></script>
   <script src="script.js?v=20260612-cities"></script>
 </body>
 </html>

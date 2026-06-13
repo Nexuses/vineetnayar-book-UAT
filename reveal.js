@@ -2,6 +2,7 @@ function getRevealGroup(element) {
   return (
     element.closest("section") ||
     element.closest(".wall-section") ||
+    element.closest(".hf-wall-widget") ||
     element.closest(".movement-sticky") ||
     element.parentElement
   );
