@@ -873,6 +873,12 @@ main > .promise {
 
 .video-section {
   background: #fff;
+  padding-inline: var(--gutter);
+}
+
+.video-section > .wrap {
+  width: min(1300px, 100%);
+  max-width: 1300px;
 }
 
 .video-section .section-title {
@@ -880,7 +886,12 @@ main > .promise {
 }
 
 .video-section .hero-quote {
+  max-width: 100%;
   margin: 28px auto 0;
+}
+
+.video-section .lede {
+  max-width: 100%;
 }
 
 .video-section .author-avatar {

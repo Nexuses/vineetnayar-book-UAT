@@ -286,6 +286,11 @@
     max-width: none;
   }
 
+  .video-section > .wrap.center {
+    width: 100%;
+    margin-inline: 0;
+  }
+
   .video-grid,
   .chapter-grid,
   .footer-graphic,
