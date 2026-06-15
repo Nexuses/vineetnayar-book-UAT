@@ -24,6 +24,7 @@
   width: min(var(--max, 1240px), calc(100% - (var(--gutter, 40px) * 2)));
   max-width: 100%;
   margin: 0 auto;
+  container-type: inline-size;
 }
 
 .hf-wall-widget .hf-wall-kicker {
@@ -48,9 +49,16 @@
   color: #fff;
 }
 
+.hf-wall-widget .hf-wall-q .hf-wall-q-lead {
+  display: block;
+  white-space: nowrap;
+  font-size: min(1em, 5cqi);
+}
+
 .hf-wall-widget .hf-wall-q .hand-highlight {
   display: table !important;
   margin: 12px auto 0;
+  white-space: nowrap;
 }
 
 .hf-wall-widget .hf-wall-intro {

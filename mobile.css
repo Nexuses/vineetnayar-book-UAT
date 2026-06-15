@@ -364,6 +364,11 @@
     margin: 12px auto 0;
   }
 
+  #cities .section-title .hand-highlight {
+    display: table !important;
+    margin: 12px auto 0;
+  }
+
   main .hand-highlight::before {
     width: calc(100% + 1em);
     height: 1.35em;
